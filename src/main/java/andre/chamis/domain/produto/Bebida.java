@@ -87,11 +87,11 @@ public class Bebida extends ProdutoAlimenticio {
                 throw new Exception("String não pode ser null!");
             }
 
-            if ("ML".equals(string.toUpperCase())) {
+            if ("ML".equalsIgnoreCase(string)) {
                 return ML;
             }
 
-            if ("L".equals(string.toUpperCase())) {
+            if ("L".equalsIgnoreCase(string)) {
                 return L;
             }
 

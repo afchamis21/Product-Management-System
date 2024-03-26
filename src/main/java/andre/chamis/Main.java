@@ -4,7 +4,6 @@ import andre.chamis.domain.fabricante.Fabricante;
 import andre.chamis.domain.produto.*;
 import andre.chamis.repo.RepositorioProduto;
 
-import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
