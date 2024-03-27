@@ -47,8 +47,6 @@ public class ProdutoAlimenticio extends Produto{
     }
 
     public static ProdutoAlimenticio fromInput() {
-        System.out.println("\nIniciando o input de um novo produto alimentício\n");
-
         ProdutoAlimenticio produtoAlimenticio = new ProdutoAlimenticio();
         produtoAlimenticio.input();
         return produtoAlimenticio;

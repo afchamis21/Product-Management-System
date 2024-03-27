@@ -66,6 +66,11 @@ public abstract class Produto {
         fabricante.imprimir(padding + 2);
     }
 
+    public static Produto fromInput() {
+        return new Produto() {
+        };
+    }
+
     protected void input() {
         this.nome = InputUtils.getStringInput("Digite o nome do produto: ");
         this.descricao = InputUtils.getStringInput("Digite a descrição do produto: ");

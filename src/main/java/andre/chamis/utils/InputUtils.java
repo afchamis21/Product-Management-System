@@ -26,7 +26,7 @@ public class InputUtils {
             scanner.nextLine();
             return valor;
         } catch (Exception e) {
-            System.out.println("Insira um número decimal válido!");
+            System.out.println("Insira um número decimal válido! Use (,) como separador decimal");
             scanner.nextLine();
             return getBigDecimalInput(mensagem);
         }
@@ -74,7 +74,9 @@ public class InputUtils {
         System.out.println("Para parar o input, envie um input vazio, ou o número zero (0)");
         do {
             val = getStringInput(" - ");
-            strings.add(val);
+            if (!val.isBlank() && !"0".equals(val)) {
+                strings.add(val);
+            }
         } while (!(val.isBlank() || "0".equals(val)));
 
         return strings.toArray(String[]::new);

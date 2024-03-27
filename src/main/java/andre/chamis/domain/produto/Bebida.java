@@ -1,5 +1,6 @@
 package andre.chamis.domain.produto;
 
+import andre.chamis.domain.exception.EnumMappingException;
 import andre.chamis.domain.fabricante.Fabricante;
 import andre.chamis.utils.InputUtils;
 import andre.chamis.utils.StringUtils;
@@ -64,7 +65,7 @@ public class Bebida extends ProdutoAlimenticio {
                         "Digite a unidade de volume do produto (ML, L): ")
                 );
                 break;
-            } catch (Exception ex) {
+            } catch (EnumMappingException ex) {
                 System.out.println(ex.getMessage());
                 System.out.println("Por favor, digite uma das unidades suportadas!");
             }
@@ -72,8 +73,6 @@ public class Bebida extends ProdutoAlimenticio {
     }
 
     public static Bebida fromInput() {
-        System.out.println("\nIniciando o input de uma nova bebida\n");
-
         Bebida bebida = new Bebida();
         bebida.input();
         return bebida;
@@ -82,20 +81,18 @@ public class Bebida extends ProdutoAlimenticio {
     public enum UnidadeDeVolume {
         ML, L;
 
-        static UnidadeDeVolume fromString(String string) throws Exception {
+        public static UnidadeDeVolume fromString(String string) throws EnumMappingException {
             if (string == null) {
-                throw new Exception("String não pode ser null!");
+                throw new EnumMappingException("String não pode ser null!");
             }
 
-            if ("ML".equalsIgnoreCase(string)) {
-                return ML;
+            for (UnidadeDeVolume unidade : UnidadeDeVolume.values()) {
+                if (unidade.name().equalsIgnoreCase(string)) {
+                    return unidade;
+                }
             }
 
-            if ("L".equalsIgnoreCase(string)) {
-                return L;
-            }
-
-            throw new Exception("Unidade " + string + " não suportada!");
+            throw new EnumMappingException("Unidade " + string + " não suportada!");
         }
     }
 }

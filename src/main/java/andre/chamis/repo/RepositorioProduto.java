@@ -2,24 +2,30 @@ package andre.chamis.repo;
 
 import andre.chamis.domain.produto.Produto;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
-public class RepositorioProduto<T extends Produto> {
-    private final Map<UUID, T> produtos;
+public class RepositorioProduto {
+    private final Map<UUID, Produto> produtos;
 
     public RepositorioProduto(){
         this.produtos = new HashMap<>();
     }
 
-    public void salvar(T produto) {
+    public void salvar(Produto produto) {
         produtos.put(produto.getUuid(), produto);
     }
 
-    public T pegarPorId(UUID uuid) {
-        return produtos.get(uuid);
+    public List<Produto> pegarTodos() {
+        return produtos.values().stream().toList();
     }
 
-    public Collection<T> pegarTodos() {
-        return produtos.values();
+    public <T extends Produto> List<T> pegarPorTipo(Class<T> tClass) {
+        return produtos.values().stream()
+                .filter(tClass::isInstance)
+                .map(tClass::cast)
+                .toList();
     }
 }

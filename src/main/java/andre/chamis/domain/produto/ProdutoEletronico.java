@@ -36,8 +36,6 @@ public class ProdutoEletronico extends Produto{
     }
 
     public static ProdutoEletronico fromInput() {
-        System.out.println("\nIniciando o input de um novo produto eletrônico\n");
-
         ProdutoEletronico produtoEletronico = new ProdutoEletronico();
         produtoEletronico.input();
         return produtoEletronico;

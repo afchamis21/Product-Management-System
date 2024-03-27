@@ -1,5 +1,6 @@
 package andre.chamis.domain.produto;
 
+import andre.chamis.domain.exception.EnumMappingException;
 import andre.chamis.domain.fabricante.Fabricante;
 import andre.chamis.utils.InputUtils;
 import andre.chamis.utils.StringUtils;
@@ -41,7 +42,7 @@ public class ProdutoVestuario extends Produto{
                         "Digite o tamanho do produto (PP, P, M, G, XG, XXG): ")
                 );
                 break;
-            } catch (Exception ex) {
+            } catch (EnumMappingException ex) {
                 System.out.println(ex.getMessage());
                 System.out.println("Por favor, digite uma das unidades suportadas!");
             }
@@ -49,8 +50,6 @@ public class ProdutoVestuario extends Produto{
     }
 
     public static ProdutoVestuario fromInput() {
-        System.out.println("\nIniciando o input de um novo produto de vestuário\n");
-
         ProdutoVestuario produtoVestuario = new ProdutoVestuario();
         produtoVestuario.input();
         return produtoVestuario;
@@ -59,36 +58,18 @@ public class ProdutoVestuario extends Produto{
     public enum Tamanho {
         PP, P, M, G, XG, XXG;
 
-        static Tamanho fromString(String string) throws Exception {
+        public static Tamanho fromString(String string) throws EnumMappingException {
             if (string == null) {
-                throw new Exception("String não pode ser null!");
+                throw new EnumMappingException("String não pode ser null!");
             }
 
-            if ("PP".equalsIgnoreCase(string)) {
-                return PP;
+            for (Tamanho tamanho : Tamanho.values()) {
+                if (tamanho.name().equalsIgnoreCase(string)) {
+                    return tamanho;
+                }
             }
 
-            if ("P".equalsIgnoreCase(string)) {
-                return P;
-            }
-
-            if ("M".equalsIgnoreCase(string)) {
-                return M;
-            }
-
-            if ("G".equalsIgnoreCase(string)) {
-                return G;
-            }
-
-            if ("XG".equalsIgnoreCase(string)) {
-                return XG;
-            }
-
-            if ("XXG".equalsIgnoreCase(string)) {
-                return XXG;
-            }
-
-            throw new Exception("Tamanho " + string + " não suportado!");
+            throw new EnumMappingException("Tamanho " + string + " não suportado!");
         }
     }
 }
