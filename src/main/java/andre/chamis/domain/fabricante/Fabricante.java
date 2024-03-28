@@ -17,9 +17,9 @@ public class Fabricante {
     private Fabricante() {}
 
     public void imprimir(int padding) {
-        System.out.println(StringUtils.adicionarPadding("- nome: " + nome, padding));
-        System.out.println(StringUtils.adicionarPadding("- endereço: " + endereco, padding));
-        System.out.println(StringUtils.adicionarPadding("- telefone: " + telefone, padding));
+        System.out.println(StringUtils.adicionarPadding("- Nome: " + nome, padding));
+        System.out.println(StringUtils.adicionarPadding("- Endereço: " + endereco, padding));
+        System.out.println(StringUtils.adicionarPadding("- Telefone: " + telefone, padding));
     }
 
     public String getNome() {

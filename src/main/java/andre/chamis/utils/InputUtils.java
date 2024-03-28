@@ -9,6 +9,11 @@ import java.util.Scanner;
 
 public class InputUtils {
     private static final Scanner scanner = new Scanner(System.in);
+
+    private static void imprimirMensagem(String mensagem) {
+        System.out.print(mensagem);
+    }
+
     public static String getStringInput(String mensagem) {
         try {
             imprimirMensagem(mensagem);
@@ -43,11 +48,6 @@ public class InputUtils {
             scanner.nextLine();
             return getIntegerInput(mensagem);
         }
-    }
-
-
-    private static void imprimirMensagem(String mensagem) {
-        System.out.print(mensagem);
     }
 
     public static Date getDateInput(String mensagem) {

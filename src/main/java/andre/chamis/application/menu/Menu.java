@@ -17,7 +17,7 @@ public class Menu {
         return instancia;
     }
 
-    public void initMenu() {
+    public void executarMenu() {
         while (true) {
             imprimirMenu();
             Opcao opcao = pegarOpcao();
