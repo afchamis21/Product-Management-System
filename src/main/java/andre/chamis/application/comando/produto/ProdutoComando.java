@@ -1,6 +1,6 @@
-package andre.chamis.comando.produto;
+package andre.chamis.application.comando.produto;
 
-import andre.chamis.comando.Comando;
+import andre.chamis.application.comando.Comando;
 import andre.chamis.services.ProdutoService;
 
 public abstract class ProdutoComando implements Comando {

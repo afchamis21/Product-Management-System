@@ -1,4 +1,4 @@
-package andre.chamis.comando;
+package andre.chamis.application.comando;
 
 
 public interface Comando {

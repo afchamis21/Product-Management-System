@@ -1,6 +1,6 @@
-package andre.chamis.comando.aplicacao;
+package andre.chamis.application.comando.aplicacao;
 
-import andre.chamis.comando.Comando;
+import andre.chamis.application.comando.Comando;
 
 public class SairComando implements Comando {
     @Override

@@ -1,6 +1,6 @@
-package andre.chamis.comando.produto.cadastrar;
+package andre.chamis.application.comando.produto.cadastrar;
 
-import andre.chamis.comando.produto.ProdutoComando;
+import andre.chamis.application.comando.produto.ProdutoComando;
 import andre.chamis.domain.produto.Bebida;
 
 public class CadastrarBebidaComando extends ProdutoComando {

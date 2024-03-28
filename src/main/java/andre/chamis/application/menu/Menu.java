@@ -3,8 +3,12 @@ package andre.chamis.application.menu;
 import andre.chamis.domain.exception.EnumMappingException;
 import andre.chamis.utils.InputUtils;
 
+import java.util.List;
+
 public class Menu {
     private static Menu instancia;
+    private TipoMenu menuAtivo = TipoMenu.PRINCIPAL;
+    private List<OpcaoMenu> opcoesDoMenu;
 
     private Menu() {
     }
@@ -18,14 +22,16 @@ public class Menu {
     }
 
     public void executarMenu() {
+        definirMenu();
+
         while (true) {
             imprimirMenu();
-            Opcao opcao = pegarOpcao();
-            opcao.getComando().executar();
+            OpcaoMenu opcaoMenu = pegarOpcao();
+            opcaoMenu.getComando().executar();
         }
     }
 
-    private Opcao pegarOpcao() {
+    private OpcaoMenu pegarOpcao() {
         try {
             Integer input = InputUtils.getIntegerInput("Escolha uma opção: ");
 
@@ -36,7 +42,7 @@ public class Menu {
 
             System.out.println();
 
-            return Opcao.fromInteger(input);
+            return OpcaoMenu.pegarPorValorETipo(input, this.menuAtivo);
         } catch (EnumMappingException e) {
             System.out.println(e.getMessage());
             return pegarOpcao();
@@ -44,10 +50,32 @@ public class Menu {
     }
 
     private void imprimirMenu() {
-        System.out.println("\nO que você deseja fazer?\n");
-        for (Opcao opcao : Opcao.values()) {
-            System.out.println(opcao.getValor() + " - " + opcao.getMensagem());
+        System.out.println("\n" + this.menuAtivo.getMensagem());
+        for (OpcaoMenu opcaoMenu : this.opcoesDoMenu) {
+            System.out.println(opcaoMenu.getValor() + " - " + opcaoMenu.getMensagem());
         }
         System.out.println();
+    }
+
+    public void definirMenu() {
+        this.opcoesDoMenu = OpcaoMenu.pegarPorTipo(this.menuAtivo);
+    }
+
+    public void voltar() {
+        if (this.menuAtivo.getAnterior().isEmpty()) {
+            System.out.println("Não é possível retornar desse menu!");
+            return;
+        }
+
+        mudarMenu(this.menuAtivo.getAnterior().get());
+    }
+
+    public void mudarMenu(TipoMenu novoTipo) {
+        if (novoTipo.equals(TipoMenu.GERAL)) {
+            throw new RuntimeException("O tipo de menu Geral nunca deve ser ativado!");
+        }
+
+        this.menuAtivo = novoTipo;
+        definirMenu();
     }
 }

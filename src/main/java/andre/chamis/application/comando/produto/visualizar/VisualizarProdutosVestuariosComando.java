@@ -1,6 +1,6 @@
-package andre.chamis.comando.produto.visualizar;
+package andre.chamis.application.comando.produto.visualizar;
 
-import andre.chamis.comando.produto.ProdutoComando;
+import andre.chamis.application.comando.produto.ProdutoComando;
 import andre.chamis.domain.produto.ProdutoVestuario;
 
 public class VisualizarProdutosVestuariosComando extends ProdutoComando {
