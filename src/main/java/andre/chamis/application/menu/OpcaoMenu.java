@@ -17,25 +17,23 @@ import java.util.List;
 
 public enum OpcaoMenu {
     // Items gerais do menu
-
     SAIR(TipoMenu.GERAL,0, "Sair da aplicação", new SairComando()),
     VOLTAR(TipoMenu.GERAL, 1, "Voltar", new VoltarComando()),
 
-    // Items do menu principal
 
+    // Items do menu principal
     CADASTRAR_PRODUTO(TipoMenu.PRINCIPAL, 2, "Cadastrar novo Produto", new SelecionarMenuCadastrarComando()),
     VISUALIZAR_PRODUTO(TipoMenu.PRINCIPAL, 3, "Visualizar Produtos", new SelecionarMenuVisualizarComando()),
 
 
     // Items do menu de cadastrar
-
     CADASTRAR_BEBIDA(TipoMenu.CADASTRAR, 2, "Bebida", new CadastrarBebidaComando()),
     CADASTRAR_PRODUTO_ALIMENTICIO(TipoMenu.CADASTRAR, 3, "Produto alimentício", new CadastrarProdutoAlimenticioComando()),
     CADSATRAR_PRODUTO_ELETRONICO(TipoMenu.CADASTRAR, 4, "Produto eletrônico", new CadastrarProdutoEletronicoComando()),
     CADASTRAR_PRODUTO_VESTUARIO(TipoMenu.CADASTRAR, 5, "Produto de vestuário", new CadastrarProdutoVestuarioComando()),
 
-    // Items do menu de visualizar
 
+    // Items do menu de visualizar
     VISUALIZAR_BEBIDAS(TipoMenu.VISUALIZAR, 2, "Bebidas", new VisualizarBebidasComando()),
     VISUALIZAR_PRODUTOS_ALIMENTICIOS(TipoMenu.VISUALIZAR, 3, "Produtos alimentícios", new VisualizarProdutosAlimenticiosComando()),
     VISUALIZAR_PRODUTOS_ELETRONICOS(TipoMenu.VISUALIZAR,4, "Produtos eletrônicos", new VisualizarProdutosEletronicosComando()),
