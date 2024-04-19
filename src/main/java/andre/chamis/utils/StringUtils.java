@@ -1,9 +1,8 @@
 package andre.chamis.utils;
 
 public class StringUtils {
-    public static String adicionarPadding(String stringOriginal, int largura) {
+    public static String addPadding(String string, int size) {
 
-        return " ".repeat(Math.max(0, largura)) +
-                stringOriginal;
+        return " ".repeat(Math.max(0, size)) + string;
     }
 }

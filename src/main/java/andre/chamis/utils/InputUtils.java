@@ -10,67 +10,67 @@ import java.util.Scanner;
 public class InputUtils {
     private static final Scanner scanner = new Scanner(System.in);
 
-    private static void imprimirMensagem(String mensagem) {
-        System.out.print(mensagem);
+    private static void printMessage(String message) {
+        System.out.print(message);
     }
 
-    public static String getStringInput(String mensagem) {
+    public static String getStringInput(String message) {
         try {
-            imprimirMensagem(mensagem);
+            printMessage(message);
             return scanner.nextLine();
         } catch (Exception e) {
             System.out.println("Insira um valor textual válido!");
-            return getStringInput(mensagem);
+            return getStringInput(message);
         }
     }
 
-    public static BigDecimal getBigDecimalInput(String mensagem) {
+    public static BigDecimal getBigDecimalInput(String message) {
         try {
-            imprimirMensagem(mensagem);
+            printMessage(message);
             BigDecimal valor = scanner.nextBigDecimal();
             scanner.nextLine();
             return valor;
         } catch (Exception e) {
             System.out.println("Insira um número decimal válido! Use (,) como separador decimal");
             scanner.nextLine();
-            return getBigDecimalInput(mensagem);
+            return getBigDecimalInput(message);
         }
     }
 
-    public static Integer getIntegerInput(String mensagem) {
+    public static Integer getIntegerInput(String message) {
         try {
-            imprimirMensagem(mensagem);
+            printMessage(message);
             Integer valor = scanner.nextInt();
             scanner.nextLine();
             return valor;
         } catch (Exception e) {
             System.out.println("Insira um número válido!");
             scanner.nextLine();
-            return getIntegerInput(mensagem);
+            return getIntegerInput(message);
         }
     }
 
-    public static Date getDateInput(String mensagem) {
+    public static Date getDateInput(String message) {
         SimpleDateFormat df = new SimpleDateFormat("MM/yyyy");
 
-        if (!mensagem.endsWith(" (MM/AAAA): ")) {
-            mensagem = mensagem.replace(":", "") + " (MM/AAAA): ";
+        if (!message.endsWith(" (MM/AAAA): ")) {
+            message = message.replace(":", "") + " (MM/AAAA): ";
         }
 
         try {
-            imprimirMensagem(mensagem);
+            printMessage(message);
             return df.parse(scanner.nextLine());
         } catch (Exception e) {
             System.out.println("Insira uma data válida!");
-            return getDateInput(mensagem);
+            return getDateInput(message);
         }
     }
 
-    public static String[] getStringArrayInput(String mensagem) {
+    public static String[] getStringArrayInput(String message) {
         List<String> strings = new ArrayList<>();
 
         String val;
-        System.out.println(mensagem);
+        System.out.println(message);
         System.out.println("Para parar o input, envie um input vazio, ou o número zero (0)");
         do {
             val = getStringInput(" - ");

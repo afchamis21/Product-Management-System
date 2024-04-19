@@ -6,76 +6,82 @@ import andre.chamis.utils.InputUtils;
 import java.util.List;
 
 public class Menu {
-    private static Menu instancia;
-    private TipoMenu menuAtivo = TipoMenu.PRINCIPAL;
-    private List<OpcaoMenu> opcoesDoMenu;
+    private static Menu instance;
+    private MenuType activeMenu = MenuType.MAIN;
+    private List<MenuOption> menuOptions;
 
     private Menu() {
     }
 
-    public static Menu getInstancia() {
-        if (instancia == null){
-            instancia = new Menu();
+    public static Menu getInstance() {
+        if (instance == null){
+            instance = new Menu();
         }
 
-        return instancia;
+        return instance;
     }
 
-    public void executarMenu() {
-        definirMenu();
+    public void execute() {
+        getMenu();
 
         while (true) {
-            imprimirMenu();
-            OpcaoMenu opcaoMenu = pegarOpcao();
-            opcaoMenu.getComando().executar();
+            printMenu();
+            MenuOption menuOption = getOption();
+
+            if (menuOption == MenuOption.QUIT) {
+                menuOption.getCommand().execute();
+                break;
+            }
+
+            menuOption.getCommand().execute();
         }
     }
 
-    private OpcaoMenu pegarOpcao() {
+    private MenuOption getOption() {
         try {
             Integer input = InputUtils.getIntegerInput("Escolha uma opção: ");
 
             if (null == input) {
                 System.out.println("Escolha uma opção válida!");
-                return pegarOpcao();
+                return getOption();
             }
 
             System.out.println();
 
-            return OpcaoMenu.pegarPorValorETipo(input, this.menuAtivo);
+            return MenuOption.getByValueAndType(input, this.activeMenu);
         } catch (EnumMappingException e) {
             System.out.println(e.getMessage());
-            return pegarOpcao();
+            return getOption();
         }
     }
 
-    private void imprimirMenu() {
-        System.out.println("\n" + this.menuAtivo.getMensagem());
-        for (OpcaoMenu opcaoMenu : this.opcoesDoMenu) {
-            System.out.println(opcaoMenu.getValor() + " - " + opcaoMenu.getMensagem());
+    private void printMenu() {
+        System.out.println("\n" + this.activeMenu.getMessage());
+        for (MenuOption menuOption : this.menuOptions) {
+            System.out.println(menuOption.getValue() + " - " + menuOption.getMessage());
         }
         System.out.println();
     }
 
-    public void definirMenu() {
-        this.opcoesDoMenu = OpcaoMenu.pegarPorTipo(this.menuAtivo);
+    public void getMenu() {
+        this.menuOptions = MenuOption.getAllByType(this.activeMenu);
     }
 
-    public void voltar() {
-        if (this.menuAtivo.getAnterior().isEmpty()) {
+    public void goBack() {
+        if (this.activeMenu.getPrevious().isEmpty()) {
             System.out.println("Não é possível retornar desse menu!");
             return;
         }
 
-        mudarMenu(this.menuAtivo.getAnterior().get());
+        changeMenu(this.activeMenu.getPrevious().get());
     }
 
-    public void mudarMenu(TipoMenu novoTipo) {
-        if (novoTipo.equals(TipoMenu.GERAL)) {
+    public void changeMenu(MenuType novoTipo) {
+        if (novoTipo.equals(MenuType.GENERAL)) {
             throw new RuntimeException("O tipo de menu Geral nunca deve ser ativado!");
         }
 
-        this.menuAtivo = novoTipo;
-        definirMenu();
+        this.activeMenu = novoTipo;
+        getMenu();
     }
 }
