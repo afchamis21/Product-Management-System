@@ -27,7 +27,7 @@ The project is structured into several Java classes, each with a specific respon
 ## Design Patterns Used
 The project makes use of the following design patterns:
 
-1. **Singleton**: Used in the [ProductService](./src/main/java/andre/chamis/services/ProdutoService.java) class to ensure that only one instance of the product service is created during program execution.
+1. **Singleton**: Used in the [ProductService](./src/main/java/andre/chamis/services/ProductService.java) class to ensure that only one instance of the product service is created during program execution.
 
 2. **Command**: The Command pattern is employed in classes related to menu commands. The [Command](src/main/java/andre/chamis/application/command) interface defines an `execute()` method, which is implemented by various command classes, allowing encapsulation of user actions into independent objects.
 
